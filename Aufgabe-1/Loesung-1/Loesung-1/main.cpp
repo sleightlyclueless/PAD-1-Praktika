@@ -364,7 +364,7 @@ void aufgabe1_5() {
 int main() {
 	
 	// First hello world function
-	// aufgabe1_1();
+	aufgabe1_1();
 
 	// Get int input and transform to chars
 	// aufgabe_1_2();
