@@ -139,10 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="hospital.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="names.h" />
     <ClInclude Include="patient.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="hospital.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="patient.cpp" />
   </ItemGroup>

@@ -1,18 +1,40 @@
-#include "patient.h"
+#include "hospital.h"
 #include <iostream>
+
 
 
 int main()
 {
+	setlocale(LC_ALL, "");
 	srand(time(NULL));
 
-	Date date;
-	date.day = rand() % 30;
-	date.mon = static_cast<Month>(rand() % 13);
-	date.year = 1950 + rand() % 99;
+	Hospital h;
 	
+	h.set_beds(60);
+	h.initialize(55);
+	h.add_patients(5);
+	h.print();
+	std::cout << "===========================" << std::endl;
+	std::cout << "===========================" << std::endl;
+	h.time_passed(20);
+	std::cout << "===========================" << std::endl;
+	std::cout << "===========================" << std::endl;
+	h.print();
+	h.add_patients(5);
+	std::cout << "===========================" << std::endl;
+	std::cout << "===========================" << std::endl;
+	h.print();
 
-	std::cout << "Hi" << std::endl;
+
+	/*Patient p = new_patient(global_id);
+	global_id++;
+	p.print();
+	std::cout << std::endl << "================" << std::endl;
+	p.reduce_time_to_cure(5);
+	p.print();
+	std::cout << std::endl << "================" << std::endl;
+	p.change_diagnosis(fracture);
+	p.print();*/
 
     return 0;
 }
@@ -21,73 +43,4 @@ int main()
 
 
 
-/*Patient newPatient()
-{
 
-    Gender gender;
-    std::string firstname;
-    Date birthday;
-    Diagnosis diagnosis;
-
-    // Get random lastname
-    const std::string lastname = lastNames.at(rand() % 50);
-
-    // Get rand gender and name
-    switch (rand() % 3)
-    {
-    case 0:
-        //male
-        firstname = firstNames_male.at(rand() % 50);
-        gender = male;
-        break;
-
-    case 1:
-        //female
-        firstname = firstNames_female.at(rand() % 50);
-        gender = female;
-        break;
-
-    case 2:
-        gender = diverse;
-        switch (rand() % 2)
-        {
-        case 0:
-            //female
-            firstname = firstNames_female.at(rand() % 50);
-            break;
-
-        case 1:
-            //male
-            firstname = firstNames_male.at(rand() % 50);
-            break;
-        }
-        break;
-    }
-    // Get random diagnose
-    switch (rand() % 4)
-    {
-    case 0:
-        diagnosis = simulant;
-        break;
-
-    case 1:
-        diagnosis = infection;
-        break;
-
-    case 2:
-        diagnosis = fracture;
-        break;
-
-    case 3:
-        diagnosis = cured;
-        break;
-    }
-
-
-    // Get random bdate
-    birthday.day = rand() % 30;
-    birthday.mon = static_cast<Month>(rand() % 13);
-    birthday.year = 1950 + rand() % 99;
-
-    return Patient(gender, firstname, lastname, birthday, diagnosis);
-}*/

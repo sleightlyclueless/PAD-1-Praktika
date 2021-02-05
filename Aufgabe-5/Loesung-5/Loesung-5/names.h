@@ -6,7 +6,7 @@
 // Created by Benjamin on 21.01.2021.
 //
 
-std::array<std::string, 50> firstNames_male = {
+std::array<std::string, 50> first_names_male = {
         "Tanguy",
         "Linus",
         "Anton",
@@ -58,7 +58,7 @@ std::array<std::string, 50> firstNames_male = {
         "Joris",
         "Kilian" };
 
-std::array<std::string, 50>firstNames_female = {
+std::array<std::string, 50>first_names_female = {
         "Lima",
         "Emilia",
         "Ella",
@@ -110,7 +110,7 @@ std::array<std::string, 50>firstNames_female = {
         "Lara",
         "Elina" };
 
-std::array<std::string, 50> lastNames = {
+std::array<std::string, 50> last_names = {
         "Müller",
         "Schmidt",
         "Schneider",
