@@ -1,39 +1,40 @@
 #pragma once
-#include <vector>
-#include <iostream>
-
 #include "patient.h"
-#include "main.h"
+
+#include <vector>
+
 
 class Hospital
 {
 	private:
-		int patients_handeled_ = 1;
-		int beds_ = 60;
+		// Attributes
+		int total_patients_handeled_ = 1;
+		int beds_ = 0;
 		std::vector<Patient> patients_;
 
 	public:
-
+	
+		// Constructor
 		Hospital();
-
+	
+		// Destructor
 		~Hospital()
 		= default;
 	
 		// Get Methods
 		int get_beds() const { return beds_; }
-		int get_patients_handeled() const { return patients_handeled_; }
 		std::vector<Patient> get_patients() const { return patients_; }
 
 		// Set Methods
 		void set_beds(int b) { beds_ = b; }
-		void set_patients_handeled(int p) { patients_handeled_ = p; }
+		void set_patients_handeled(int p) { total_patients_handeled_ = p; }
 
 		// Methods
-		void print();
-		int get_free_beds() const;
-		void initialize(int fillbeds);
-		void add_patients(int p);
-		void time_passed(int days);
-		void erase_patient(int id);
-		bool find_patient(Patient* p, int* id);
+		int get_free_beds() const; // Function to calculate how many free beds / slots in vector are left
+		void add_patient(Patient& p); // Function to fill the beds (vector) of the hospital object
+		void print(); // Print function to print patient data for each filled bed_ in vector from patient object
+		void days_passed(int days); // Function to pass days and update patients in hospital accordingly
+		void erase_patient(const int id); // Erase a patient by id from vector
+		void change_patient_diagnosis(int id, Diagnosis d);
+		bool find_patient(Patient* p, int* id); // Check a patient pointer is in hospital
 };

@@ -1,7 +1,5 @@
 #pragma once
 #include <ostream>
-#include <vector>
-#include <iostream>
 #include <string>
 
 enum Gender
@@ -10,23 +8,20 @@ enum Gender
 	female,
 	diverse
 };
-inline std::ostream& operator << (std::ostream& os, const Gender& t)
+inline std::ostream& operator << (std::ostream& os, const Gender& g)
 {
-	switch (t)
+	switch (g)
 	{
-	case 0:
-		os << "male";
-		break;
-
-	case 1:
-		os << "female";
-		break;
-
-	case 2:
-		os << "divers";
-		break;
+		case 0:
+			os << "Male";
+			break;
+		case 1:
+			os << "Female";
+			break;
+		case 2:
+			os << "Divers";
+			break;
 	}
-
 	return os;
 }
 
@@ -41,86 +36,80 @@ inline std::ostream& operator << (std::ostream& os, const Diagnosis& d)
 {
 	switch (d)
 	{
-	case 0:
-		os << "simulant";
-		break;
-
-	case 1:
-		os << "infection";
-		break;
-
-	case 2:
-		os << "fracture";
-		break;
-	
-	case 3:
-		os << "cured";
-		break;
+		case 0:
+			os << "Simulant";
+			break;
+		case 1:
+			os << "Infection";
+			break;
+		case 2:
+			os << "Fracture";
+			break;
+		case 3:
+			os << "Cured";
+			break;
 	}
-	
 	return os;
 }
 
 enum Month
 {
-	January = 0,
-	February,
-	March,
-	April,
-	Mai,
-	June,
-	July,
-	August,
-	September,
-	October,
-	November,
-	December
+	january = 0,
+	february,
+	march,
+	april,
+	mai,
+	june,
+	july,
+	august,
+	september,
+	october,
+	november,
+	december
 };
 inline std::ostream& operator << (std::ostream& os, const Month& d)
 {
 	switch (d)
 	{
-	case 0:
-		os << "January";
-		break;
-	case 1:
-		os << "February";
-		break;
-	case 2:
-		os << "March";
-		break;
-	case 3:
-		os << "April";
-		break;
-	case 4:
-		os << "May";
-		break;
-	case 5:
-		os << "June";
-		break;
-	case 6:
-		os << "July";
-		break;
-	case 7:
-		os << "August";
-		break;
-	case 8:
-		os << "September";
-		break;
-	case 9:
-		os << "Oktober";
-		break;
-	case 10:
-		os << "November";
-		break;
-	default:
-		os << "December";
-		break;
+		case 0:
+			os << "January";
+			break;
+		case 1:
+			os << "February";
+			break;
+		case 2:
+			os << "March";
+			break;
+		case 3:
+			os << "April";
+			break;
+		case 4:
+			os << "May";
+			break;
+		case 5:
+			os << "June";
+			break;
+		case 6:
+			os << "July";
+			break;
+		case 7:
+			os << "August";
+			break;
+		case 8:
+			os << "September";
+			break;
+		case 9:
+			os << "Oktober";
+			break;
+		case 10:
+			os << "November";
+			break;
+		case 11:
+			os << "December";
+			break;
 	}
-
 	return os;
 }
-const std::vector<std::string> enum_str = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 struct Date
 {
@@ -144,22 +133,21 @@ class Patient
 		int timetocure_;
 
 	public:
-		static int global_id_;
+		// Public static var to count patient id
+		static int global_id;
+	
 		// Constructor
 		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis);
+		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate);
 
+		// Destructor
 		~Patient()
 		= default;
 
 		
 		// Get Methods
-		static int get_global_id() { return global_id_; }
+		static int get_global_id() { return global_id; }
 		int get_id() const { return id_; }
-		Gender get_gender() const { return gender_; }
-		std::string get_firstname() const { return firstname_; }
-		std::string get_lastname() const { return lastname_; }
-		Date get_birthdate() const { return birthdate_; }
-		Diagnosis get_diagnosis() const { return diagnosis_; }
 		int get_time_to_cure() const { return timetocure_; }
 
 		// Set Methods
@@ -168,9 +156,9 @@ class Patient
 		void set_time_to_cure(const int t) { timetocure_ = t; }
 
 		// Methods
-		void print() const; // Print current patient data
-		static std::string enum_to_str(int i);
-		void reduce_time_to_cure(int t);
+		void print_patient_data() const; // Print current patient data
+		int calc_time_to_cure() const;
+		void reduce_time_to_cure(int t); // Print patient data
 		void change_diagnosis(Diagnosis d);
 		static bool compare_patients(Patient* p1, Patient* p2);
 };

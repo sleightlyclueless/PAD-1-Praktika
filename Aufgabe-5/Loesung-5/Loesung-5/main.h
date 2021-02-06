@@ -1,14 +1,14 @@
 #pragma once
-#include <iostream>
-
 #include "hospital.h"
 #include "names.h"
 
+// Generate random values for a patient and return patient object with these values
 inline Patient new_patient()
 {
     Gender gender;
     std::string firstname;
-    Date birthday;
+    // ReSharper disable once CppInitializedValueIsAlwaysRewritten
+    Date birthday{};
     Diagnosis diagnosis;
 
     // Get rand gender and name
@@ -27,6 +27,7 @@ inline Patient new_patient()
         break;
 
     default:
+        // diverse
         gender = diverse;
         switch (rand() % 2)
         {
@@ -43,12 +44,10 @@ inline Patient new_patient()
         break;
     }
 
-
     // Get random lastname
     const std::string lastname = last_names.at(rand() % 50);
 
-
-    // Get random diagnose
+    // Get random diagnose (never initialized with diagnose cured)
     switch (rand() % 3)
     {
     case 0:
@@ -63,7 +62,6 @@ inline Patient new_patient()
         diagnosis = fracture;
         break;
     }
-
 
     // Get random bdate
     birthday.day = rand() % 30;
