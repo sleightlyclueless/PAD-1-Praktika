@@ -1,9 +1,13 @@
 #include "patient.h"
 
+int Patient::global_id_ = 100000;
 
-Patient::Patient(int id, Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis = simulant)
-    :id_(id), gender_(gender), firstname_(firstname), lastname_(lastname), birthdate_(birthdate), diagnosis_(diagnosis)
+Patient::Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis)
+    :gender_(gender), firstname_(firstname), lastname_(lastname), birthdate_(birthdate), diagnosis_(diagnosis)
 {
+    
+    id_ = ++global_id_;
+	
     switch (diagnosis_)
     {
     case infection:
@@ -58,7 +62,7 @@ void Patient::print() const
 	<< "Birthday: " << day_str << " " << get_birthdate().mon << " " << get_birthdate().year << std::endl
 	<< "Diagnosis: " << get_diagnosis() << std::endl
 	<< "Days till cure: " << get_time_to_cure() << std::endl << std::endl
-	<< "===========================" << std::endl;;
+	<< "===========================" << std::endl;
 }
 
 void Patient::reduce_time_to_cure(int t)
@@ -103,4 +107,20 @@ void Patient::change_diagnosis(Diagnosis d)
         set_time_to_cure(2);
         break;
     }
+}
+
+bool Patient::compare_patients(Patient* p1, Patient* p2)
+{
+	if (p1->get_firstname() == p2->get_firstname() && p1->get_lastname() == p2->get_lastname())
+	{
+        const int p1birthsum = p1->get_birthdate().day + p1->get_birthdate().mon + p1->get_birthdate().year;
+        const int p2birthsum = p2->get_birthdate().day + p2->get_birthdate().mon + p2->get_birthdate().year;
+        
+		if (p1birthsum == p2birthsum)
+		{
+            return true;
+		}
+	}
+	
+    return false;
 }

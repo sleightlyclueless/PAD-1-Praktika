@@ -1,6 +1,6 @@
 #pragma once
-#include <string>
 #include <array>
+#include <string>
 
 //
 // Created by Benjamin on 21.01.2021.

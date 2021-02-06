@@ -1,16 +1,16 @@
 #pragma once
+#include <iostream>
+
+#include "hospital.h"
 #include "names.h"
 
-inline Patient new_patient(int global_id)
+inline Patient new_patient()
 {
-
     Gender gender;
     std::string firstname;
     Date birthday;
     Diagnosis diagnosis;
 
-
-    const int id = global_id;
     // Get rand gender and name
     switch (rand() % 3)
     {
@@ -70,5 +70,5 @@ inline Patient new_patient(int global_id)
     birthday.mon = static_cast<Month>(rand() % 13);
     birthday.year = 1950 + rand() % 99;
 
-    return Patient(id, gender, firstname, lastname, birthday, diagnosis);
+    return Patient(gender, firstname, lastname, birthday, diagnosis);
 }

@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
+#include <iostream>
+
 #include "patient.h"
+#include "main.h"
 
 class Hospital
 {
@@ -31,5 +34,6 @@ class Hospital
 		void initialize(int fillbeds);
 		void add_patients(int p);
 		void time_passed(int days);
-
+		void erase_patient(int id);
+		bool find_patient(Patient* p, int* id);
 };

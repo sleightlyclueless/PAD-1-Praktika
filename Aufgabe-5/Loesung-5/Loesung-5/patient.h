@@ -1,7 +1,8 @@
 #pragma once
-#include <string>
+#include <ostream>
 #include <vector>
 #include <iostream>
+#include <string>
 
 enum Gender
 {
@@ -143,14 +144,16 @@ class Patient
 		int timetocure_;
 
 	public:
+		static int global_id_;
 		// Constructor
-		Patient(int id, Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis);
+		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis);
 
 		~Patient()
 		= default;
 
 		
 		// Get Methods
+		static int get_global_id() { return global_id_; }
 		int get_id() const { return id_; }
 		Gender get_gender() const { return gender_; }
 		std::string get_firstname() const { return firstname_; }
@@ -160,6 +163,7 @@ class Patient
 		int get_time_to_cure() const { return timetocure_; }
 
 		// Set Methods
+		void set_id(const int i) { id_ = i; }
 		void set_diagnosis(Diagnosis d) { diagnosis_ = d; }
 		void set_time_to_cure(const int t) { timetocure_ = t; }
 
@@ -168,4 +172,5 @@ class Patient
 		static std::string enum_to_str(int i);
 		void reduce_time_to_cure(int t);
 		void change_diagnosis(Diagnosis d);
+		static bool compare_patients(Patient* p1, Patient* p2);
 };
