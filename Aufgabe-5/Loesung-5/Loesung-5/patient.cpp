@@ -32,7 +32,7 @@ void Patient::print_patient_data() const
 {
 	// Build a string for the day with english endings
     std::string day_str = std::to_string(birthdate_.day);
-    if (birthdate_.day < 10)
+    if (birthdate_.day < 4)
     {
 
         if (birthdate_.day == 1)
