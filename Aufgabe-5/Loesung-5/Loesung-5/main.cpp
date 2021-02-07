@@ -78,6 +78,9 @@ int main()
 	{
 		std::cout << "Patient with id " << patientfoundid << " already in hospital!" << std::endl;
 	}
+
+
+	std::cout << std::endl << "Simulation over -" << Hospital::total_patients_handeled << "- Patients handeled!" << std::endl;
 	
     return 0;
 }
