@@ -66,7 +66,7 @@ inline Patient new_patient()
     // Get random bdate
     birthday.day = rand() % 30;
     birthday.mon = static_cast<Month>(rand() % 13);
-    birthday.year = 1950 + rand() % 99;
+    birthday.year = 1950 + rand() % 70;
 
     return Patient(gender, firstname, lastname, birthday, diagnosis);
 }

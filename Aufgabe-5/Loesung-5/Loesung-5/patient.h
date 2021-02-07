@@ -158,7 +158,7 @@ class Patient
 		// Methods
 		void print_patient_data() const; // Print current patient data
 		int calc_time_to_cure() const;
-		void reduce_time_to_cure(int t); // Print patient data
+		int reduce_time_to_cure(int t); // Print patient data
 		void change_diagnosis(Diagnosis d);
 		static bool compare_patients(Patient* p1, Patient* p2);
 };

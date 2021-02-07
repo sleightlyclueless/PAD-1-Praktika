@@ -83,7 +83,7 @@ int Patient::calc_time_to_cure() const
 
 
 // Function to reduce the cure time. Used from hospital when a day passes
-void Patient::reduce_time_to_cure(const int t)
+int Patient::reduce_time_to_cure(const int t)
 {
 	// Get remaining timetocure and reduce it by the passed var
     int timetocure = timetocure_;
@@ -94,10 +94,11 @@ void Patient::reduce_time_to_cure(const int t)
 	{
         set_diagnosis(cured);
         set_time_to_cure(0);
-	} else
-	{
-        set_time_to_cure(timetocure);
+        return 0;
 	}
+	
+    set_time_to_cure(timetocure);
+    return timetocure;
 }
 
 // Change diagnosis and reset timetocure accordingly again

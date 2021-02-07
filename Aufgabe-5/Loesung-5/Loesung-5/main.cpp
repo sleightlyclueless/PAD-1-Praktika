@@ -43,20 +43,20 @@ int main()
 	std::cout << "===============================================================" << std::endl << std::endl;
 	std::cout << "ERASE PATIENTS" << std::endl;
 	h.erase_patient(h.get_patients().at(5).get_id());
-	h.erase_patient(100051);
+	h.erase_patient(1000051);
 	h.print();
 
 	// Change diagnosis for some patients
 	std::cout << "===============================================================" << std::endl << std::endl;
 	std::cout << "CHANGE PATIENT DIAGNOSES" << std::endl;
 	h.change_patient_diagnosis(h.get_patients().at(1).get_id(), simulant);
-	//h.change_patient_diagnosis(h.get_patients().back().get_id(), simulant);
+	h.change_patient_diagnosis(h.get_patients().back().get_id(), fracture);
 	h.print();
 
 
 	// =Add manually created patient - not found=
-	Date birthday = { 23, january, 1998 };
-	Patient pdef = Patient(male, "Felix", "SangMoKoo", birthday);
+	Date birthday = { 8, mai, 1998 };
+	Patient pdef = Patient(male, "Sebastian", "Zill", birthday);
 	foundpatient = h.find_patient(&pdef, &patientfoundid);
 	if (!foundpatient)
 	{
