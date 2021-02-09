@@ -122,8 +122,9 @@ struct Date
 
 class Patient
 {
+	
 	private:
-		// Attributes
+		// Attributes -- TODO usually start with m
 		int id_;
 		Gender gender_;
 		std::string firstname_;
@@ -137,6 +138,7 @@ class Patient
 		static int global_id;
 	
 		// Constructor
+		// TODO DEFAULT VALUE ONE CONSTRUCT Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis = simulant);
 		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis);
 		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate);
 
@@ -157,8 +159,9 @@ class Patient
 
 		// Methods
 		void print_patient_data() const; // Print current patient data
-		int calc_time_to_cure() const;
-		int reduce_time_to_cure(int t); // Print patient data
-		void change_diagnosis(Diagnosis d);
-		static bool compare_patients(Patient* p1, Patient* p2);
+		int calc_time_to_cure() const; // Calc and return remaining time to cure fom diagnosis
+		int reduce_time_to_cure(int t); // Function to reduce the cure time. Used from hospital when a day passes
+		void change_diagnosis(Diagnosis d); // Change diagnosis and reset timetocure accordingly again
+		static bool compare_patients(Patient* p1, Patient* p2); // Compare two patients per pointer and return bool if they are the same
+
 };

@@ -23,7 +23,7 @@ void Hospital::add_patient(Patient & p)
 	if (get_free_beds() <= 0)
 	{
 		std::cout << "Hospital full!" << std::endl;
-		p.~Patient();
+		// p.~Patient(); // TODO Destructor not nessecary - only for heap
 		return;
 	}
 
@@ -33,9 +33,10 @@ void Hospital::add_patient(Patient & p)
 }
 
 // Print function to print patient data for each filled bed_ in vector from patient object
-void Hospital::print()
+// TODO Const correctness always if function does not change anything!!!
+void Hospital::print() const
 {
-	for (Patient &p : patients_)
+	for (const Patient &p : patients_)
 	{
 		p.print_patient_data();
 	}
@@ -113,7 +114,7 @@ void Hospital::change_patient_diagnosis(const int id, const Diagnosis d)
 // Return according boolean and patient id
 bool Hospital::find_patient(Patient* p, int* id)
 {
-	for (Patient currp : patients_)
+	for (Patient& currp : patients_)
 	{
 		if (Patient::compare_patients(&currp, p) == true)
 		{

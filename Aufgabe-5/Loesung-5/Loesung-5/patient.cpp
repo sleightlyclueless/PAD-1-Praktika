@@ -65,6 +65,7 @@ void Patient::print_patient_data() const
 	<< "===========================" << std::endl;
 }
 
+// Calc and return remaining time to cure fom diagnosis
 int Patient::calc_time_to_cure() const
 {
     switch (diagnosis_)
