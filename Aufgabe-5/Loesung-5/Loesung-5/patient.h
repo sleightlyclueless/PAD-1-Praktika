@@ -124,7 +124,7 @@ class Patient
 {
 	
 	private:
-		// Attributes -- TODO usually start with m
+		// Attributes -- TODO attr usually start with m
 		int id_;
 		Gender gender_;
 		std::string firstname_;
@@ -139,6 +139,7 @@ class Patient
 	
 		// Constructor
 		// TODO DEFAULT VALUE ONE CONSTRUCT Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis = simulant);
+		// TODO CONST CORR
 		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate, Diagnosis diagnosis);
 		Patient(Gender gender, std::string firstname, std::string lastname, Date birthdate);
 

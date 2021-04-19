@@ -22,7 +22,8 @@ class Hospital
 		// Destructor
 		~Hospital()
 		= default;
-	
+
+		// TODO CONST CORR
 		// Get Methods
 		int get_beds() const { return beds_; }
 		// TODO Better suited -> O(log(n)) Laufzeit

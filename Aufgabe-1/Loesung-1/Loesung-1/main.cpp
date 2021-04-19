@@ -4,12 +4,11 @@
 #include <typeinfo>
 #include <sstream>
 
-// Use std namespace for the usual cout etc. function pointers
-using namespace std;
+#include <array>
 
 // Console break function - just cout two breaks
 void console_break() {
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
 }
 
 // Function to get only digits on cin inputs
@@ -18,28 +17,28 @@ int get_number() {
 	// Therefore check and only accept digit entries.
 
 	// Initialize necessary vars
-	string str;
+	std::string str;
 	int a;
 
 	// Read whole input cin into string var first, because here it does not break after letters
-	while (getline(cin, str))
+	while (getline(std::cin, str))
 	{
 		// Search if there is an unwanted char in string.
 		// size_t can store up to max size of an object - if we do not find an unaccepted char it becomes -1 or npos (18446744073709551615 == -1)
 		auto const flag = str.find_first_not_of("-0123456789");
 
 		// npos is type size_t and cant be negative therefore it takes on the value of the highest possible number. If that is the case we have an accepted integer input
-		if (flag == string::npos)
+		if (flag == std::string::npos)
 		{
 			// Success - valid int - transform to int
 			a = stoi(str);
-			cout << "Your int var is: " << a;
+			std::cout << "Your int var is: " << a;
 			console_break();
 			// If we found an fitting int - exit the whole while loop - we are done here
 			break;
 		}
 
-		cout << "Error, enter only valid int numbers. Please try again!" << endl;
+		std::cout << "Error, enter only valid int numbers. Please try again!" << std::endl;
 	}
 
 	// When we exited the while loop we found an int var. Go ahead and return that to the function call.
@@ -64,7 +63,7 @@ int factorial(const int n)
 void aufgabe1_1()
 {
 	// First command output
-	cout << "Hello Sebastian - this is your first C++ function";
+	std::cout << "Hello Sebastian - this is your first C++ function";
 	console_break();
 }
 
@@ -72,7 +71,7 @@ void aufgabe1_1()
 void aufgabe_1_2()
 {
 	// User instructions
-	cout << "First input handling function. Transform int to char." << endl << "Please enter an integer number for the function to handle." << endl;
+	std::cout << "First input handling function. Transform int to char." << std::endl << "Please enter an integer number for the function to handle." << std::endl;
 
 	// Call get a number function from cin
 	int a = get_number();
@@ -81,7 +80,7 @@ void aufgabe_1_2()
 
 	while (a < 0 || a > 255)
 	{
-		cout << "Please enter a number between 0 and 255 - this is how many ASCII Chars exist." << endl;
+		std::cout << "Please enter a number between 0 and 255 - this is how many ASCII Chars exist." << std::endl;
 		a = get_number();
 	}
 
@@ -90,9 +89,9 @@ void aufgabe_1_2()
 	// That's because -16 is the same as hex 0xf0 which is the same as 240
 	// Output var versions
 	console_break();
-	cout << "==================================" << endl;
-	cout << "Your var as int typeof: " << typeid(a).name() << endl << "Value: " << a << endl;
-	cout << "Your var as char typeof: " << typeid(c).name() << endl << "Value: " << c << endl;
+	std::cout << "==================================" << std::endl;
+	std::cout << "Your var as int typeof: " << typeid(a).name() << std::endl << "Value: " << a << std::endl;
+	std::cout << "Your var as char typeof: " << typeid(c).name() << std::endl << "Value: " << c << std::endl;
 }
 
 // Aufgabe 1.3 - Function for basic calculations of n and m
@@ -102,42 +101,42 @@ void aufgabe1_3()
 	float result;
 
 	// explanation for program to the user
-	cout << "Calculate 2 integers n and m with one another.";
+	std::cout << "Calculate 2 integers n and m with one another.";
 	console_break();
 
 	// get var n for calculations
-	cout << "Please enter an integer variable for n." << endl;
+	std::cout << "Please enter an integer variable for n." << std::endl;
 	int n = get_number();
 
 	// get var m for calculations
-	cout << "Please enter the second integer variable for m." << endl;
+	std::cout << "Please enter the second integer variable for m." << std::endl;
 	int m = get_number();
 
-	cout << "Calculations start" << endl;
-	cout << "==================================" << endl;
+	std::cout << "Calculations start" << std::endl;
+	std::cout << "==================================" << std::endl;
 
 	// calculate results and put it into console for the user
 	result = n + m;
-	cout << "Plus: " << n << " + " << m << " = " << result << endl;
+	std::cout << "Plus: " << n << " + " << m << " = " << result << std::endl;
 
 	result = n - m;
-	cout << "Minus: " << n << " - " << m << " = " << result << endl;
+	std::cout << "Minus: " << n << " - " << m << " = " << result << std::endl;
 
 	result = n * m;
-	cout << "Multiplication: " << n << " * " << m << " = " << result << endl;
+	std::cout << "Multiplication: " << n << " * " << m << " = " << result << std::endl;
 
 	// handle exception if we want to divide by 0
 	if (m == 0)
 	{
-		cout << "Cant divide or modulo by zero!" << endl;
+		std::cout << "Cant divide or modulo by zero!" << std::endl;
 	}
 	else
 	{
 		result = (float)n / (float)m;
-		cout << "Division: " << n << " / " << m << " = " << result << endl;
+		std::cout << "Division: " << n << " / " << m << " = " << result << std::endl;
 
 		result = n % m;
-		cout << "Modulo: " << n << " / " << m << " = " << result << endl;
+		std::cout << "Modulo: " << n << " / " << m << " = " << result << std::endl;
 	}
 }
 
@@ -145,8 +144,8 @@ void aufgabe1_3()
 void aufgabe1_4()
 {
 	// explanation for program to the user
-	cout << "This function will give the square of two for each second number from 1 to n or from n to -1." << endl;
-	cout << "Please enter an integer variable for n." << endl;
+	std::cout << "This function will give the square of two for each second number from 1 to n or from n to -1." << std::endl;
+	std::cout << "Please enter an integer variable for n." << std::endl;
 
 	// initialize vars
 	int n = get_number();
@@ -155,7 +154,7 @@ void aufgabe1_4()
 	// zero not accepted
 	while (n == 0)
 	{
-		cout << "There are no square calculations from 0 to 0. Please enter another number." << endl;
+		std::cout << "There are no square calculations from 0 to 0. Please enter another number." << std::endl;
 		n = get_number();
 	}
 
@@ -164,26 +163,26 @@ void aufgabe1_4()
 	if (n > 0)
 	{
 		// Solution with for-loop
-		cout << "Solution with for-loop" << endl;
+		std::cout << "Solution with for-loop" << std::endl;
 		// TODO Simpler i + 2
 		for (int i = 1; i <= n; i++)
 		{
 			if (i == 1)
 			{
-				cout << "Result for number " << i << ": " << i * i << endl;
+				std::cout << "Result for number " << i << ": " << i * i << std::endl;
 			}
 			else if ((i % 2) != 0)
 			{
-				cout << "Result for number " << i << ": " << i * i << endl;
+				std::cout << "Result for number " << i << ": " << i * i << std::endl;
 			}
 		}
 
-		cout << "==================================";
+		std::cout << "==================================";
 		console_break();
 
 
 		// solution with while-loop
-		cout << "Solution with while-loop" << endl;
+		std::cout << "Solution with while-loop" << std::endl;
 		int while_counter = 1;
 
 		while (while_counter <= n)
@@ -191,39 +190,39 @@ void aufgabe1_4()
 
 			if (while_counter == 1)
 			{
-				cout << "Result for number " << while_counter << ": " << while_counter * while_counter << endl;
+				std::cout << "Result for number " << while_counter << ": " << while_counter * while_counter << std::endl;
 			}
 			else if ((while_counter % 2) != 0)
 			{
-				cout << "Result for number " << while_counter << ": " << while_counter * while_counter << endl;
+				std::cout << "Result for number " << while_counter << ": " << while_counter * while_counter << std::endl;
 			}
 
 			while_counter++;
 		}
 
-		cout << "==================================";
+		std::cout << "==================================";
 		console_break();
 
 
 		// Solution with do-while-loop
-		cout << "Solution with do-while-loop" << endl;
+		std::cout << "Solution with do-while-loop" << std::endl;
 		int do_while_counter = 1;
 
 		do
 		{
 			if (do_while_counter == 1)
 			{
-				cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << endl;
+				std::cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << std::endl;
 			}
 			else if ((do_while_counter % 2) != 0)
 			{
-				cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << endl;
+				std::cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << std::endl;
 			}
 
 			do_while_counter++;
 		} while (do_while_counter <= n);
 
-		cout << "==================================";
+		std::cout << "==================================";
 		console_break();
 
 	}
@@ -236,20 +235,20 @@ void aufgabe1_4()
 		{
 			if (i == -1)
 			{
-				cout << "Result for number " << i << ": " << i * i << endl;
+				std::cout << "Result for number " << i << ": " << i * i << std::endl;
 			}
 			else if ((i % 2) != 0)
 			{
-				cout << "Result for number " << i << ": " << i * i << endl;
+				std::cout << "Result for number " << i << ": " << i * i << std::endl;
 			}
 		}
 
-		cout << "==================================";
+		std::cout << "==================================";
 		console_break();
 
 
 		// solution with while-loop
-		cout << "Solution with while-loop" << endl;
+		std::cout << "Solution with while-loop" << std::endl;
 		int while_counter = n;
 
 		while (while_counter <= -1)
@@ -257,43 +256,43 @@ void aufgabe1_4()
 
 			if (while_counter == -1)
 			{
-				cout << "Result for number " << while_counter << ": " << while_counter * while_counter << endl;
+				std::cout << "Result for number " << while_counter << ": " << while_counter * while_counter << std::endl;
 			}
 			else if ((while_counter % 2) != 0)
 			{
-				cout << "Result for number " << while_counter << ": " << while_counter * while_counter << endl;
+				std::cout << "Result for number " << while_counter << ": " << while_counter * while_counter << std::endl;
 			}
 
 			while_counter++;
 		}
 
-		cout << "==================================";
+		std::cout << "==================================";
 		console_break();
 
 
 		// Solution with do-while-loop
-		cout << "Solution with do-while-loop" << endl;
+		std::cout << "Solution with do-while-loop" << std::endl;
 		int do_while_counter = n;
 
 		do
 		{
 			if (do_while_counter == -1)
 			{
-				cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << endl;
+				std::cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << std::endl;
 			}
 			else if ((do_while_counter % 2) != 0)
 			{
-				cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << endl;
+				std::cout << "Result for number " << do_while_counter << ": " << do_while_counter * do_while_counter << std::endl;
 			}
 
 			do_while_counter++;
 		} while (do_while_counter <= -1);
 
-		cout << "==================================";
+		std::cout << "==================================";
 		console_break();
 	}
 
-	cout << "End of for loop solutions and function.";
+	std::cout << "End of for loop solutions and function.";
 	console_break();
 }
 
@@ -305,7 +304,7 @@ void aufgabe1_5() {
 	int n, k;
 
 	// Get first variable n with n > 0 and n<=12
-	cout << "Please enter your first int variable n for binomial coefficient calculation. Please pay in mind that it cant be bigger than 12 due to the limits of integers." << endl;
+	std::cout << "Please enter your first int variable n for binomial coefficient calculation. Please pay in mind that it cant be bigger than 12 due to the limits of integers." << std::endl;
 	while (pass == false)
 	{
 		n = get_number();
@@ -316,7 +315,7 @@ void aufgabe1_5() {
 		}
 		else
 		{
-			cout << "Pay in mind: n has to be n > 0 and n<=12. Please try again!" << endl;
+			std::cout << "Pay in mind: n has to be n > 0 and n<=12. Please try again!" << std::endl;
 		}
 	}
 
@@ -324,7 +323,7 @@ void aufgabe1_5() {
 	pass = false;
 
 	// Get second var k with k > 0 k<=12 and n>=k
-	cout << "Please enter your second int variable k for binomial coefficient calculation. Please pay in mind the above stated conditions and that n has to be bigger than k." << endl;
+	std::cout << "Please enter your second int variable k for binomial coefficient calculation. Please pay in mind the above stated conditions and that n has to be bigger than k." << std::endl;
 	while (pass == false)
 	{
 		k = get_number();
@@ -339,7 +338,7 @@ void aufgabe1_5() {
 
 		if (pass == false)
 		{
-			cout << "Pay in mind: k has to be k > 0 and k<=12, as well as n>=k with n being " << n << endl << "Please try again!" << endl;
+			std::cout << "Pay in mind: k has to be k > 0 and k<=12, as well as n>=k with n being " << n << std::endl << "Please try again!" << std::endl;
 		}
 	}
 
@@ -347,24 +346,24 @@ void aufgabe1_5() {
 	int const fact_k = factorial(k);
 	int const fact_n_minus_k = factorial(n - k);
 
-	cout << "==================================" << endl;
-	cout << "Here are our variables:" << endl;
-	cout << "n = " << n << endl;
-	cout << "k = " << k << endl;
-	cout << "fact_n = " << fact_n << endl;
-	cout << "fact_k = " << fact_k << endl;
-	cout << "fact_n_minus_k = " << fact_n_minus_k << endl;
-	cout << "==================================" << endl;
-	cout << "Binomial coefficient: " << fact_n / (fact_k * fact_n_minus_k);
+	std::cout << "==================================" << std::endl
+	<< "Here are our variables:" << std::endl
+	<< "n = " << n << std::endl
+	<< "k = " << k << std::endl
+	<< "fact_n = " << fact_n << std::endl
+	<< "fact_k = " << fact_k << std::endl
+	<< "fact_n_minus_k = " << fact_n_minus_k << std::endl
+	<< "==================================" << std::endl
+	<< "Binomial coefficient: " << fact_n / (fact_k * fact_n_minus_k);
 
 	console_break();
 }
 
 
 int main() {
-	
+
 	// First hello world function
-	aufgabe1_1();
+	// aufgabe1_1();
 
 	// Get int input and transform to chars
 	// aufgabe_1_2();
