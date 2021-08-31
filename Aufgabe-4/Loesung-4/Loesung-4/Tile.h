@@ -17,6 +17,7 @@ enum class Tilestate
 	revealed
 };
 
+
 // Struct for tiles
 struct Tile
 {
@@ -31,7 +32,7 @@ struct Tile
 
 
 // Overload function to handle tilestates and return according string for print function instantly
-inline std::ostream& operator << (std::ostream& os, const Tile &t)
+inline std::ostream &operator << (std::ostream &os, const Tile &t)
 {
 	// Get tilestate from tile into switch case
 	switch (t.tilestate) {
@@ -48,12 +49,9 @@ inline std::ostream& operator << (std::ostream& os, const Tile &t)
 
 		case Tilestate::revealed:
 			if (t.adjacent_mines_counter > 0)
-			{
 				os << "  " << t.adjacent_mines_counter;
-			} else
-			{
+			else
 				os << "  .";
-			}
 			break;
 	}
 	

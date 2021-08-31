@@ -11,7 +11,7 @@ class Field
 		// Note: Array field_ has to be a square
 		static const int width = 15;
 		static const int height = 15;
-		int mines_ = 0;
+		int mines = 0;
 		// Initialize field array with Tiles struct in each field
 		Tile field_[width][height];
 	
@@ -25,21 +25,16 @@ class Field
 		}
 
 		// Destructor
-		~Field()
-		{
+		~Field() = default;
 
-		}
-	
 		// Methods
-		//
 		// Set amount of mines the field is initialized
 		static int getWidth() { return width; }
 		static int getHeight() { return height; }
-		void setMines(int m) { mines_ = m; }
 	
 		// Methods initialized here and implemented in according Field.cpp
 		int getnumber() const; // Get integer from cin and prevent strange entries
-		void initialize(); // Initialize field by giving every field coordinates and placing amount of set mines
+		void initialize(int placemines); // Initialize field by giving every field coordinates and placing amount of set mines
 		int calcremainingtiles() const; // Calculate amount of unrevealed tiles without mines
 		int calculate_neighbors(int x, int y) const; // Calculate amount of mines adjacent to given tile coordinates
 		void print(bool debug) const; // Print current state from playing field into console

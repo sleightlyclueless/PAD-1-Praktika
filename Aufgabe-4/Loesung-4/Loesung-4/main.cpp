@@ -17,15 +17,12 @@ int main()
 
 	// Char to toggle between guess and mark mine mode
 	char togglemode;
-	
 
 	// Create object from class field so we can use the field and its functions
 	Field field;
 
-	// Initialise playing field
-	field.setMines(10);
-	field.initialize();
-
+	// Initialise playing field with x mines
+	field.initialize(10);
 	
 	// Run game as long as no mine was hit or win condition not reached
 	while(!gameover)
@@ -38,8 +35,7 @@ int main()
 		field.print(false);
 		
 		// Calc elapsed time and show it
-		const auto end = std::chrono::high_resolution_clock::now();
-		auto elapsed_secs = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+		long elapsed_secs = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start).count();
 		std::cout << "Elapsed time: ";
 		if (elapsed_secs / 3600 > 0)
 		{
@@ -58,7 +54,6 @@ int main()
 		if (openfields == 0)
 		{
 			std::cout << "You win!" << std::endl << std::endl;
-	
 			break;
 		}
 
@@ -68,12 +63,9 @@ int main()
 		std::cin >> togglemode;
 		togglemode = std::tolower(togglemode);
 		if (togglemode == 'y')
-		{
 			std::cout << "Mine - mark - mode: State coordinates from the field where you want to toggle a mark of a mine" << std::endl;
-		} else
-		{
+		else
 			std::cout << "State coordinates from the field to guess" << std::endl;
-		}
 
 		
 		// User instructions to get coordinates from field to check / mark
@@ -97,21 +89,13 @@ int main()
 
 		// Handle field to check depending on mode (guess or mark) we are in
 		if (togglemode == 'y')
-		{
-			// Mark given field as mine
 			gameover = field.toggle_minemark(x, y);
-		}
 		else
-		{
-			// Evaluate given field and update game state and field
 			gameover = field.guess(x, y);
-		}
-
 		std::cout << std::endl;
-		
 	}
 	
-	// Print field to show mines in the end
+	// Print field to show final state
 	field.print(true);
 	
 	return 0;
