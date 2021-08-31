@@ -7,14 +7,17 @@ int Field::getnumber() const
 {
 	// Initialize necessary vars
 	std::string str;
-
+	bool firsttime = true;
 	// Read whole input cin into string var first, because here it does not break after letters
 	while (getline(std::cin, str))
 	{
 		// Exception if empty - request valid entry
 		if (str.empty())
 		{
-			std::cout << "Error, you have to enter something. Please do so!" << std::endl;
+			if (!firsttime)
+				std::cout << "Error, you have to enter something. Please do so!" << std::endl;
+			
+			firsttime = false;
 			continue;
 		}
 
@@ -23,10 +26,7 @@ int Field::getnumber() const
 
 		// If no unaccepted characters return accepted number
 		if (flag == std::string::npos)
-		{
-			const int a = stoi(str);
-			return a;
-		}
+			return stoi(str);
 
 		std::cout << "Error, enter only valid int numbers. Please try again!" << std::endl;
 	}
